@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "BackEnd do projeto",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "test": "Bora trabalhar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BIGTOST/Projeto-Integrado-III-WattsMarket.git"
+  },
+  "keywords": [
+    "Backend",
+    "Projeto_Integrado_III"
+  ],
+  "author": "Alexandre Cardoso pv22614",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BIGTOST/Projeto-Integrado-III-WattsMarket/issues"
+  },
+  "homepage": "https://github.com/BIGTOST/Projeto-Integrado-III-WattsMarket#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "pg": "^8.10.0",
+    "postgres": "^3.3.4",
+    "sequelize": "^6.31.1"
+  }
+}
