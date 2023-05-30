@@ -28,3 +28,5 @@ rolesDeUtilizador.asociate = (model)=>{
     rolesDeUtilizador.belongsToMany(Roles, {foreignKey:'Id_Roles'})
     rolesDeUtilizador.belongsToMany(user, {foreignKey:'Id_User'})
 }
+
+module.exports = rolesDeUtilizador; 

@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
 const sequelize = require("./database");
 
+//*chamada das outras tabelas
 const rolesDeUtilizador = require('./rolesDeUtilizador');
 const Role = require('./Roles');
+const Pacote = require('./pacotes');
 
 const users = sequelize.define('users',{
     id_users:{
@@ -20,5 +22,7 @@ const users = sequelize.define('users',{
 
 users.asociate =(model) =>{
     users.belongsToMany(Role, {through:'roleDeUtilizador',foreigKey:'id_user'});
+    users.hasMany(Pacote,{foreigKey:'id_user'});
 }
 
+module.exports = users;
