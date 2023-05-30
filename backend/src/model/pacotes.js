@@ -2,9 +2,11 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./database');
 
+//*importação das entidades associadas
 const users = require('./user');
-const compraDePacotes = require('./compra_de_pacotes');
+const compraDePacotes = require('./compraDePacotes');
 
+//*definição da entidade
 const  pacotes = sequelize.define('pacotes',{
     id_pacote:{
         type: Sequelize.INTEGER,
@@ -20,7 +22,27 @@ const  pacotes = sequelize.define('pacotes',{
         }
     },
     preco: Sequelize.DOUBLE,
-
+    quantidadeDeKW: Sequelize.INTEGER,
+    dataDeAnuncio: Sequelize.DATE,
+    
+    id_Comprador:{
+        type:Sequeliz.INTEGER,
+        reference:{
+            model:'compraDePacotes  ',
+            key:'id_Compra'
+        }
+    }
+},{
+    sequelize,
+    timestamps:true,
+    modelName:'pacotes'
 });
 
+//* associações
+pacotes.asociate = (model)=>{
+    pacotes.belongsTo(users, {foreignKey:'id_vendendor'});
+    pacotes.hasOne(compraDePacotes, {foreignKey:'id_Comprador'})
+}
+
+//*exportação dos modulos
 module.exports = pacotes;
