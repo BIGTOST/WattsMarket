@@ -12,14 +12,6 @@ const compraDePacotes = sequelize.define(compraDePacotes,{
         primaryKey: true,
         autoIncremene: true
     },
-    
-    id_vendedor:{
-        type:Sequelize.INTEGER,
-        reference:{
-            model:'pacotes',
-            key:'id_vendedor',
-        }
-    },
     id_comprador:{
         type: Sequelize.INTEGER,
         reference:{
@@ -57,9 +49,9 @@ const compraDePacotes = sequelize.define(compraDePacotes,{
 });
 
 compraDePacotes.asociate = (model)=>{
-    compraDePacotes.hasOne(pacotes,{foreignKey:'id_pacote',foreignKey: 'id_vendedor'});
+    compraDePacotes.hasOne(pacotes,{foreignKey:'id_pacote'});
     compraDePacotes.hasMany(documentos,{foreignKey:'id_documento'});
     compraDePacotes.belongTo(users,{foreignKey:'id_comprador'});
     compraDePacotes.belongTo(formasDePagamento,{foreignKey:'id_tipo_de_pagamento'})
 }
-module.exports = compraDePacotes
+module.exports = compraDePacotes;
