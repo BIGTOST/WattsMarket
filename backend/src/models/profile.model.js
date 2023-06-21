@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
-const sequelize = require('./BD');
+const BD = require('./database.model');
+const sequelize = require('./database.model');
 
 
 const Profiles = BD.define('Profiles', {

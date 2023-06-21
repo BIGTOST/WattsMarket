@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
-const user = require('./users');
-const pack = require('./Packs')
-const ContractStatus = require('./ContractStatus');
-const ContractType = require('./ContractType');
+const user = require('./users.model');
+const pack = require('./pack.model')
+const ContractStatus = require('./contract.statu.model');
+const ContractType = require('./contract.type.model');
 
 const Contracts = BD.define('Contracts',{
     idContract:{

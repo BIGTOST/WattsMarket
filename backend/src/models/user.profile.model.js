@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
-const users = require('./users');
-const profiles = require('./Profiles');
+const users = require('./users.model');
+const profiles = require('./profile.model');
 
 const UserProfiles = BD.define('UserProfiles',{
     idUserProfiles:{

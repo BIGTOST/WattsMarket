@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
 const ContractStatus = BD.define('ContractStatus',{
     idContractStatus:{

@@ -1,7 +1,7 @@
 //*Invocação do packge sequelize para a criação da BD
 const Sequelize = require('sequelize');
 //*invocação da base de dados
-const BD = require('./BD');
+const BD = require('./database.model');
 
 const Users = BD.define('Users',{
     idUser:{

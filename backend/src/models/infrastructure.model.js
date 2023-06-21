@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
-const type = require('./InfrasTructureType');
-const user = require('./users');
+const type = require('./infrastructure.type.model');
+const user = require('./users.model');
 
 
 const Infrastructure = BD.define('Infrastructure',{

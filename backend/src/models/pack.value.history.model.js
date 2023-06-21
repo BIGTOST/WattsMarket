@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
-const pack = require('./Packs');
+const pack = require('./pack.model');
 
 const PackValueHistorys = BD.define('PackValueHistory',{
     idValue:{

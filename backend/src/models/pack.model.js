@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const BD = require('./BD');
+const BD = require('./database.model');
 
-const user = require('./users');
+const user = require('./users.model');
 
 const Packs = BD.define('Packs',{
     idPack:{
