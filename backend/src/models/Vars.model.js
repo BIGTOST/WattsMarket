@@ -11,3 +11,4 @@ const Vars = BD.define('Vars', {
     ProductionCap:Sequelize.DECIMAL(5)
 });
 
+module.exports= Vars;
