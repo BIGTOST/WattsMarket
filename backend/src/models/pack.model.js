@@ -10,8 +10,8 @@ const Packs = BD.define('Packs',{
         autoIncrement:true
     },
     V:Sequelize.INTEGER,
-    KW:Sequelize.DECIMAL(5),
-    Value:Sequelize.DECIMAL(5),
+    KW:Sequelize.DOUBLE(5),
+    Value:Sequelize.DOUBLE(5),
     ValueData:Sequelize.DATE    
 });
 

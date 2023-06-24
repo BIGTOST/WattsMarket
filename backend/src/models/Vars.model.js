@@ -7,8 +7,8 @@ const Vars = BD.define('Vars', {
         primaryKey:true,
         autoIncrement:true
     },
-    InflationMax:Sequelize.DECIMAL(5),
-    ProductionCap:Sequelize.DECIMAL(5)
+    InflationMax:Sequelize.DOUBLE(5),
+    ProductionCap:Sequelize.DOUBLE(5)
 });
 
 module.exports= Vars;

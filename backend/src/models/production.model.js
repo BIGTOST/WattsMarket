@@ -10,7 +10,7 @@ const Production = BD.define('Production',{
         autoIncremente:true
     },
     ProductionMonth:Sequelize.STRING(45),
-    ProductionKW: Sequelize.DECIMAL(5)
+    ProductionKW: Sequelize.DOUBLE(5)
 })
 
 Production.belongsTo(Infrastructure, {foreignKey:'idInfrastructure'});

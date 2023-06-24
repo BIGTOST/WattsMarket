@@ -18,3 +18,22 @@ const Billings = require('../models/billing.model');
 const controller = {};
 
 BD.sync();
+
+
+controller.userList = async(req, res)=>{
+    const data = await users.findAll({
+        include:[userProfiles, infastructure]
+    })
+    .catch(error =>{
+        return error;
+    });
+    res.json({success:true, data:data});
+    console.log('passamos pela lista');
+}
+
+controller.findUser = async (req,res) =>{
+    const {idUser} = req.params;
+    console.log()
+}
+
+module.exports = controller;
