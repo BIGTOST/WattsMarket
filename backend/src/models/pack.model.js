@@ -15,7 +15,7 @@ const Packs = BD.define('Packs',{
     valueData:Sequelize.DATE    
 });
 
-Packs.belongsTo(user,{foreignKey:'Vendor'});
-user.hasMany(Packs,{foreignKey:'Vendor'});
+Packs.belongsTo(user,{foreignKey:'vendor'});
+user.hasMany(Packs,{foreignKey:'vendor'});
 
 module.exports = Packs

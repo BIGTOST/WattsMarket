@@ -7,6 +7,7 @@ const InfrastructureType = BD.define('InfrastructureType',{
         primaryKey:true,
         autoIncrement:true
     },
+    V:Sequelize.INTEGER,
     type:Sequelize.STRING(45)
 });
 

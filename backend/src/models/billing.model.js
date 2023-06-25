@@ -10,6 +10,7 @@ const billing = BD.define('Billings',{
         primaryKey:true,
         autoIncrement:true
     },
+    V: Sequelize.INTEGER,
     billingMonth:Sequelize.STRING(45),
     value:Sequelize.DOUBLE(45),
     dueDate:Sequelize.DATE,

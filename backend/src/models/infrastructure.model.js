@@ -16,10 +16,10 @@ const Infrastructure = BD.define('Infrastructure',{
     zone: Sequelize.STRING(45),
 });
 
-Infrastructure.belongsTo(type, {foreignKey:'Type'});
-type.hasMany(Infrastructure,{foreignKey:'Type'});
-Infrastructure.belongsTo(user, {foreignKey:'Vendor'});
-user.hasMany(Infrastructure, {foreignKey:'Vendor'});
+Infrastructure.belongsTo(type, {foreignKey:'type'});
+type.hasMany(Infrastructure,{foreignKey:'type'});
+Infrastructure.belongsTo(user, {foreignKey:'vendor'});
+user.hasMany(Infrastructure, {foreignKey:'vendor'});
 
 
 module.exports = Infrastructure;

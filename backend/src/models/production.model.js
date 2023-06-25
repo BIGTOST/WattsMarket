@@ -9,6 +9,7 @@ const Production = BD.define('Production',{
         primaryKey:true,
         autoIncremente:true
     },
+    V:Sequelize.INTEGER,
     productionMonth:Sequelize.STRING(45),
     productionKW: Sequelize.DOUBLE(5)
 })

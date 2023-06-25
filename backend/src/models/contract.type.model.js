@@ -7,7 +7,8 @@ const ContractType = BD.define('ContractType',{
         primaryKey: true,
         autoIncrement:true
     },
-    Type:Sequelize.STRING(45)
+    V:Sequelize.INTEGER,
+    type:Sequelize.STRING(45)
 });
 
 module.exports = ContractType;

@@ -8,7 +8,8 @@ const Docs = BD.define('Docs', {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncriment: true
-    }
+    },
+    V: Sequelize.INTEGER
 });
 
 Docs.belongsTo(Contract, {foreignKey:'idContract'});

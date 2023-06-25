@@ -162,7 +162,7 @@ function App() {
 
   function apagar(idVar){
     const url = 'http://localhost:3000/var/delet/' + idVar;
-    axios.put(url)
+    axios.get(url)
     .then(response =>{
       if(response.data.success){
         alert(response.data.message);

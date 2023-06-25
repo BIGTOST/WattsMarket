@@ -7,7 +7,8 @@ const ContractStatus = BD.define('ContractStatus',{
         primaryKey:true,
         autoIncrement:true
     },
-    Status:Sequelize.STRING(45)
+    V:Sequelize.INTEGER,
+    status:Sequelize.STRING(45)
 });
 
 module.exports = ContractStatus;

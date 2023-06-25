@@ -33,6 +33,20 @@ controller.listVar = async (req, res) => {
     res.json({success:true, data:data})
 }
 
+controller.findVar = async (req, res) =>{
+    const {idVar} = req.params;
+    const data = await vars.findAll({
+        where:{idVar: idVar},
+    })
+    .then(function(data){
+        return data;
+    })
+    .catch(error =>{
+        return error;
+    })
+    res.json({success:true, data:data})
+}
+
 controller.updateVar = async (req,res) =>{
     const {idVar} = req.params;
 
@@ -60,7 +74,7 @@ controller.updateVar = async (req,res) =>{
 
 controller.deletVar = async (req,res) =>{
     const {idVar} = req.params;
-
+    console.log(idVar)
     const data = await vars.update({
         V:0
     },{

@@ -7,6 +7,7 @@ const PaymentMethod = BD.define('PaymentMethod', {
         primaryKey:true,
         autoIncrement: true
     },
+    V:Sequelize.INTEGER,
     content:Sequelize.STRING(45)
 });
 

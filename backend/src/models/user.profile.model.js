@@ -10,6 +10,7 @@ const UserProfiles = BD.define('UserProfiles',{
         primaryKey: true,
         autoIncrement: true
     },
+    V:Sequelize.INTEGER
 });
 
 
