@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const BD = require('./database.model');
+const sequelize = require('./database.model');
 
 const Vars = BD.define('Vars', {
     idVar:{
@@ -7,8 +8,10 @@ const Vars = BD.define('Vars', {
         primaryKey:true,
         autoIncrement:true
     },
-    InflationMax:Sequelize.DOUBLE(5),
-    ProductionCap:Sequelize.DOUBLE(5)
+    V:Sequelize.INTEGER,
+    inflationMax:Sequelize.DOUBLE(5),
+    productionCap:Sequelize.DOUBLE(5)
+
 });
 
 module.exports= Vars;

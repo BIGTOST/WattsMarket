@@ -12,8 +12,8 @@ const Contracts = BD.define('Contracts',{
         primaryKey:true,
         autoIncrement:true
     },
-    StartDate:Sequelize.DATE,
-    EndDate:Sequelize.DATE
+    startDate:Sequelize.DATE,
+    endDate:Sequelize.DATE
 });
 
 //*ID do comprador

@@ -9,9 +9,9 @@ const PackValueHistorys = BD.define('PackValueHistory',{
         primaryKey: true,
         autoIncrement: true
     },
-    Value:Sequelize.DOUBLE(5),
-    StartData:Sequelize.DATE,
-    EndData:Sequelize.DATE,
+    value:Sequelize.DOUBLE(5),
+    startData:Sequelize.DATE,
+    endData:Sequelize.DATE,
 });
 
 PackValueHistorys.belongsTo(pack,{foreignKey:'idPack'});

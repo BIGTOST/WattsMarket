@@ -12,11 +12,8 @@ const Infrastructure = BD.define('Infrastructure',{
         autoIntremente: true
     },
     V: Sequelize.INTEGER,
-    Capacity: Sequelize.INTEGER,
-    Zone: Sequelize.STRING(45),
-},{
-    timestamp: false,
-    modelName:'Infrastructure'
+    capacity: Sequelize.INTEGER,
+    zone: Sequelize.STRING(45),
 });
 
 Infrastructure.belongsTo(type, {foreignKey:'Type'});

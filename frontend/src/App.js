@@ -82,7 +82,8 @@ function App() {
                 <th>0</th>
                 <td>0.0005</td>
                 <td>25.0005</td>
-                <td><button type="submit" className="btn btn-primary" >Submit</button></td>
+                <td><button type="submit" className="btn btn-primary" >edit</button></td>
+                <td><button type="submit" className="btn btn-warning" >delet</button></td>
               </tr>
                 <LoadFillData/>
               </tbody>
@@ -94,14 +95,17 @@ function App() {
   );
   function LoadFillData(){
     return dataVars.map((data, index)=>{
-      return(
-        <tr key={index}>
-            <th>{data.idVar}</th>
-            <td>{data.InflationMax}</td>
-            <td>{data.ProductionCap}</td>
-            <td><button type="submit" className="btn btn-primary" >Submit</button></td>
-        </tr>
-      )
+      if(data.V === 1){
+        return(
+          <tr key={index}>
+              <th>{data.idVar}</th>
+              <td>{data.inflationMax}</td>
+              <td>{data.productionCap}</td>
+              <td><button type="submit" className="btn btn-primary" onClick={() => updateTest(data.idVar)}>edit</button></td>
+              <td><button type="submit" className="btn btn-warning" onClick={() => apagar(data.idVar)}>delet</button></td>
+          </tr>
+        )
+      }
     });
   }
 
@@ -115,8 +119,8 @@ function App() {
       const baseUrl = 'http://localhost:3000/var/create';
       console.log(dataInflationMax,dataProductionCap)
       const datapost={
-        InflationMax: dataInflationMax,
-        ProductionCap: dataProductionCap
+        inflationMax: dataInflationMax,
+        productionCap: dataProductionCap
       }
       axios.post(baseUrl, datapost)
       .then(response =>{
@@ -132,6 +136,44 @@ function App() {
         alert('Error 34 ' + error);
       })
     }
+  }
+
+  function updateTest(idVar){
+    const url = 'http://localhost:3000/var/update/' + idVar;
+    
+    const data={
+      inflationMax: 0.66666,
+      productionCap:0.33333
+    }
+
+    axios.put(url,data)
+    .then(response =>{
+      if(response.data.success){
+        alert(response.data.message);
+      }
+      else{
+        alert('erro');
+      }
+    })
+    .catch(error=>{
+      alert('Error: ' + error);
+    })
+  }
+
+  function apagar(idVar){
+    const url = 'http://localhost:3000/var/delet/' + idVar;
+    axios.put(url)
+    .then(response =>{
+      if(response.data.success){
+        alert(response.data.message);
+      }
+      else{
+        alert('error');
+      }
+    })
+    .catch(error=>{
+      alert('Error:' + error);
+    })
   }
 
 }

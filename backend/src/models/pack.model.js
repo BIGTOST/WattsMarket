@@ -11,8 +11,8 @@ const Packs = BD.define('Packs',{
     },
     V:Sequelize.INTEGER,
     KW:Sequelize.DOUBLE(5),
-    Value:Sequelize.DOUBLE(5),
-    ValueData:Sequelize.DATE    
+    value:Sequelize.DOUBLE(5),
+    valueData:Sequelize.DATE    
 });
 
 Packs.belongsTo(user,{foreignKey:'Vendor'});

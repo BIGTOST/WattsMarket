@@ -10,10 +10,7 @@ const Profiles = BD.define('Profiles', {
         autoIncremente: true
     },
     V: Sequelize.INTEGER,
-    Profile:Sequelize.STRING(45)
-},{
-    timestamp: false,
-    modelName:'Profiles'
+    profile:Sequelize.STRING(45)
 })
 
 module.exports = Profiles;

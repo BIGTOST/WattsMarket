@@ -10,10 +10,10 @@ const billing = BD.define('Billings',{
         primaryKey:true,
         autoIncrement:true
     },
-    BillingMonth:Sequelize.STRING(45),
-    Value:Sequelize.DOUBLE(45),
-    DueDate:Sequelize.DATE,
-    Payment:Sequelize.DATE
+    billingMonth:Sequelize.STRING(45),
+    value:Sequelize.DOUBLE(45),
+    dueDate:Sequelize.DATE,
+    payment:Sequelize.DATE
 });
 
 billing.belongsTo(contract,{foreignKey:'idContract'});
