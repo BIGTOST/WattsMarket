@@ -5,7 +5,7 @@ const users = require('./users.model');
 const profiles = require('./profile.model');
 
 const UserProfiles = BD.define('UserProfiles',{
-    idUserProfiles:{
+    idUserProfile:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true

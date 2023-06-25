@@ -75,7 +75,7 @@ controller.updateDocument = async (req,res) =>{
     console.log('passamos no update');  
 }
 
-controller.deletDocument = async (req,res) =>{
+controller.deleteDocument = async (req,res) =>{
     const {idDoc} = req.params;
     console.log(idDoc);
 

@@ -37,11 +37,11 @@ controller.listUserProfile = async (req, res) => {
 }
 
 controller.findUserProfile = async (req, res) =>{
-    const {idUserProfiles} = req.params;
-    console.log(idUserProfiles);
+    const {idUserProfile} = req.params;
+    console.log(idUserProfile);
 
     const data = await userProfile.findAll({
-        where:{idUserProfiles:idUserProfiles},
+        where:{idUserProfile:idUserProfile},
     })
     .then(function(data){
         return data;
@@ -56,8 +56,8 @@ controller.findUserProfile = async (req, res) =>{
 }
 
 controller.updateUserProfile = async (req,res) =>{
-    const {idUserProfiles} = req.params;
-    console.log(idUserProfiles);
+    const {idUserProfile} = req.params;
+    console.log(idUserProfile);
 
     const {idUser,idProfile} = req.body;
     console.log(idUser,idProfile);
@@ -67,7 +67,7 @@ controller.updateUserProfile = async (req,res) =>{
         idProfile:idProfile,
 
     },{
-        where:{idUserProfiles:idUserProfiles}
+        where:{idUserProfile:idUserProfile}
     })
     .then(function(data){
         return data;
@@ -83,13 +83,13 @@ controller.updateUserProfile = async (req,res) =>{
 }
 
 controller.deleteUserProfile = async (req,res) =>{
-    const {idUserProfiles} = req.params;
-    console.log(idUserProfiles);
+    const {idUserProfile} = req.params;
+    console.log(idUserProfile);
 
     const data = await userProfile.update({
         V:0
     },{
-        where:{idUserProfiles:idUserProfiles}
+        where:{idUserProfile:idUserProfile}
     })
     .then(function(data){
         return data;

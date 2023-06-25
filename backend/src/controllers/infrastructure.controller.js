@@ -81,7 +81,7 @@ controller.updateInfrastructure = async (req,res) =>{
     console.log('passamos no update');  
 }
 
-controller.deletInfrastructure = async (req,res) =>{
+controller.deleteInfrastructure = async (req,res) =>{
     const {idInfrastructure} = req.params;
     console.log(idInfrastructure);
 

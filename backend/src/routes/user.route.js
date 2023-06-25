@@ -4,9 +4,12 @@ const router = express.Router();
 const usersControllers = require('../controllers/user.controller');
 
 
-router.get('/', (req,res)=>{
-    res.send('rota do User,')
-})
-router.get('/listar',usersControllers.userList);
+router.get('/', usersControllers.listUser);
+router.get('/:idUser', usersControllers.findUser);
+router.post('/create', usersControllers.createUser);
+router.put('/update/:idUser', usersControllers.updateUser);
+router.get('/delete/:idUser', usersControllers.deleteUser);
+
+
 
 module.exports = router;

@@ -54,6 +54,7 @@ controller.findBilling = async (req, res) =>{
 
 controller.updateBilling = async (req,res) =>{
     const {idTransaction} = req.params;
+    console.log(idTransaction)
 
     const {billingMonth, value,dueDate,payment} = req.body;
     console.log(inflationMax, productionCap);
@@ -64,7 +65,7 @@ controller.updateBilling = async (req,res) =>{
         dueDate:dueDate,
         payment:payment
     },{
-        where:{idVar:idVar}
+        where:{idTransaction:idTransaction}
     })
     .then(function(data){
         return data;
@@ -79,7 +80,7 @@ controller.updateBilling = async (req,res) =>{
     console.log('passamos no update');  
 }
 
-controller.deletBilling = async (req,res) =>{
+controller.deleteBilling = async (req,res) =>{
     const {idTransaction} = req.params;
     console.log(idTransaction);
     

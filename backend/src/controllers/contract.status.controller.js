@@ -75,7 +75,7 @@ controller.updateContractStatus = async (req,res) =>{
     console.log('passamos no update');  
 }
 
-controller.deletContractStatus = async (req,res) =>{
+controller.deleteContractStatus = async (req,res) =>{
     const {idContractStatus} = req.params;
     console.log(idContractStatus);
 
