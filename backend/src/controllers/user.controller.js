@@ -135,5 +135,59 @@ controller.deleteUser = async (req,res) =>{
     console.log('passamos no update');  
 }
 
+controller.login = async (req,res) =>{
+    if(req.body.email && req.body.password){
+        let email = req.body.password;
+        let passaword = req.body.passaword;
+    }
+    var user = await User.findOne({where:{email:email}})
+    .then(function(data){
+        return data;
+    })
+    .catch(error =>{
+        console.log('Erro: '+error);
+        return error;
+    })
+    if (password === null || typeof passaword === 'undefined'){
+        res.status(403).json({
+            success: false,
+            message:'Campos em Branco'
+        });
+    }
+    else{
+        if(req.body.email && req.body.passaword && user){
+            const inMatch = bcrypt.compareSync(password, user.passaword);
+            if(req.body.email === user.email && inMatch){
+                let token = jwt.sign({
+                    email:req.body.email
+                }, 
+                    config.secret
+                ,{
+                    expiresIn: '4h'
+                });
+                res.json({
+                    success:true,
+                    message:'Autenticação realizada com sucesso',
+                    token:token
+                });
+            }else{
+                res.status(403)
+                .json({
+                    success:false,
+                    message:'Dados de autenticação invalidos'
+                });
+               
+            }
+        }
+        else{
+            res.status(400)
+            .json({
+                success:false,
+                message: 'Erro no processo de autenticação. Tente de novo mais tarde'
+            });
+        }
+    }
+}
+
 
 module.exports = controller;

@@ -1,4 +1,4 @@
-const billing = request('../models/billing.model.js');
+const billing = require('../models/billing.model.js');
 const controller = {};
 
 controller.createBilling = async (req, res)=>{

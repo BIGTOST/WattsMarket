@@ -1,4 +1,5 @@
 const express = require('express');
+const middleware = require('./middleware');
 const cors = require('cors');
 const app = express();
 
@@ -27,21 +28,21 @@ app.use('/test', (req, res)=>{
     res.send("General Kenoby");
 });
 
-app.use('billing', billingRoute);
-app.use('contractStatusRoute', contractStatusRoute);
-app.use('contractType', contractTypeRoute);
-app.use('contract', contractRoute);
-app.use('document', documentRoute);
-app.use('infrastructure', infrastructureRoute);
-app.use('infrastructureType', infrastructureTypeRoute);
-app.use('pack', packRoute);
-app.use('packValueHistor', packValueHistoryRoute);
-app.use('paymentMethod', paymentMethodRoute);
-app.use('production', productionRoute);
-app.use('uprofile', profileRoute);
-app.use('userProfile', userProfileRoute);
+app.use('billing',middleware.checkToken, billingRoute);
+app.use('contractStatusRoute',middleware.checkToken, contractStatusRoute);
+app.use('contractType',middleware.checkToken, contractTypeRoute);
+app.use('contract',middleware.checkToken, contractRoute);
+app.use('document',middleware.checkToken, documentRoute);
+app.use('infrastructure',middleware.checkToken, infrastructureRoute);
+app.use('infrastructureType',middleware.checkToken, infrastructureTypeRoute);
+app.use('pack',middleware.checkToken, packRoute);
+app.use('packValueHistor',middleware.checkToken, packValueHistoryRoute);
+app.use('paymentMethod',middleware.checkToken, paymentMethodRoute);
+app.use('production',middleware.checkToken, productionRoute);
+app.use('uprofile',middleware.checkToken, profileRoute);
+app.use('userProfile',middleware.checkToken, userProfileRoute);
 app.use('/user', userRoute);
-app.use('/var', varRoute);
+app.use('/var',middleware.checkToken, varRoute);
 
 app.use('/', (req, res)=>{
     res.send("Hello there");

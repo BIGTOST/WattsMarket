@@ -3,6 +3,8 @@ const Sequelize = require('sequelize');
 //*invocação da base de dados
 const BD = require('./database.model');
 
+const bcrypt = require('bcrypt')
+
 const Users = BD.define('Users',{
     idUser:{
         type: Sequelize.INTEGER,
@@ -18,6 +20,16 @@ const Users = BD.define('Users',{
     address: Sequelize.STRING(45),
     IBAN: Sequelize.STRING(45),
     phone: Sequelize.INTEGER,
+});
+
+Users.beforeCreate((user, options) =>{
+    return bcrypt.hash(user.password, 10)
+    .then(hash =>{
+        user.password = hash;
+    })
+    .catch(error=>{
+        throw new Error();
+    });
 });
 
 module.exports = Users;
