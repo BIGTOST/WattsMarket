@@ -1,181 +1,50 @@
+import './App.css';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import axios from 'axios';
-import React, {useEffect, useState} from 'react'
-import './App.css';
+import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+// import views
+import Index from './views/page.index.view';
+import BackOffice from './views/page.backoffice.view';
+import FrontOffice from './views/page.frontoffice.view';
 
 function App() {
-
-  const [dataInflationMax, setInflationMax] = useState('');
-  const [dataProductionCap, setProdutionCap] = useState('');
-  const [dataVars, setDataVars] = useState([]);
-
-  useState(()=>{
-    const url ="http://localhost:3000/var/";
-    axios.get(url)
-    .then(res =>{
-      if(res.data.success){
-        const data =res.data.data;
-        setDataVars(data);
-      }
-      else{
-        alert('error web server');
-        console.log(res);
-      }
-    })
-    .catch(err=>{
-      alert(err)
-    });
-  },[]);
-
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col-6" >
-            <form className="row row-cols-lg-auto g-3 align-items-center">
-                <div className="col-12">
-                  <label className="visually-hidden" htmlFor="InflationMax">InflationMax</label>
-                  <div className="input-group">
-                    <input 
-                      type="number" 
-                      className="form-control" 
-                      step={0.00001}
-                      id="InflationMax" 
-                      placeholder="Inflation Max" 
-                      value={dataInflationMax}
-                      onChange={value=>setInflationMax(value.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <label className="visually-hidden" htmlFor="dataProductionCap">InflationMax</label>
-                  <div className="input-group">
-                    <input 
-                      type="number" 
-                      className="form-control" 
-                      step={0.00001}
-                      id="dataProductionCap" 
-                      placeholder="Inflation Max" 
-                      value={dataProductionCap}
-                      onChange={value=>setProdutionCap(value.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <button type="submit" className="btn btn-primary" onClick={() => sendSave()}>Submit</button>
-              </div>
-            </form>
-          </div>
-          <div className="col-6" >
-            <table className='table table-hover table-striped'>
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Inflation Max</th>
-                  <th scope="col">Production Cap</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <th>0</th>
-                <td>0.0005</td>
-                <td>25.0005</td>
-                <td><button type="submit" className="btn btn-primary" >edit</button></td>
-                <td><button type="submit" className="btn btn-warning" >delet</button></td>
-              </tr>
-                <LoadFillData/>
-              </tbody>
-            </table>
-          </div>
+    <>
+      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          HOME
+        </a>
+        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" className="nav-link px-2 link-secondary">Destaques</a></li>
+          <li><a href="#" className="nav-link px-2 link-dark">Vender/Comprar</a></li>
+          <li><a href="#" className="nav-link px-2 link-dark">Contactos</a></li>
+        </ul>
+        <div className="col-md-3 text-end">
+          <button type="button" className="btn btn-outline-primary me-2">Entrar</button>
+          <button type="button" className="btn btn-primary">Registar</button>
         </div>
-      </div>
-    </div>
-  );
-  function LoadFillData(){
-    return dataVars.map((data, index)=>{
-      if(data.V === 1){
-        return(
-          <tr key={index}>
-              <th>{data.idVar}</th>
-              <td>{data.inflationMax}</td>
-              <td>{data.productionCap}</td>
-              <td><button type="submit" className="btn btn-primary" onClick={() => updateTest(data.idVar)}>edit</button></td>
-              <td><button type="submit" className="btn btn-warning" onClick={() => apagar(data.idVar)}>delet</button></td>
-          </tr>
-        )
-      }
-    });
-  }
-
-  function sendSave(){
-    if(dataInflationMax === ''){
-      alert('Campo não preenchido')
-    }else if(dataProductionCap === ''){
-      alert('Campo não preenchido')
-    }
-    else{
-      const baseUrl = 'http://localhost:3000/var/create';
-      console.log(dataInflationMax,dataProductionCap)
-      const datapost={
-        inflationMax: dataInflationMax,
-        productionCap: dataProductionCap
-      }
-      axios.post(baseUrl, datapost)
-      .then(response =>{
-        if(response.data.success){
-
-          alert(response.data.message);
-        }
-        else{
-          alert(response.data.message);
-        } 
-      })
-      .catch(error=>{
-        alert('Error 34 ' + error);
-      })
-    }
-  }
-
-  function updateTest(idVar){
-    const url = 'http://localhost:3000/var/update/' + idVar;
-    
-    const data={
-      inflationMax: 0.66666,
-      productionCap:0.33333
-    }
-
-    axios.put(url,data)
-    .then(response =>{
-      if(response.data.success){
-        alert(response.data.message);
-      }
-      else{
-        alert('erro');
-      }
-    })
-    .catch(error=>{
-      alert('Error: ' + error);
-    })
-  }
-
-  function apagar(idVar){
-    const url = 'http://localhost:3000/var/delet/' + idVar;
-    axios.get(url)
-    .then(response =>{
-      if(response.data.success){
-        alert(response.data.message);
-      }
-      else{
-        alert('error');
-      }
-    })
-    .catch(error=>{
-      alert('Error:' + error);
-    })
-  }
-
+      </header>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path='/' element={<Index/>}/>
+            <Route path='/admin' element={<BackOffice/>}/>
+            <Route path='/cliente' element={<FrontOffice/>}/>
+          </Routes>
+        </div>
+      </Router>
+      <footer className="py-3 my-4">
+        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+          <li className="nav-item"><a href="/" className="nav-link px-2 text-body-secondary">Início</a></li>
+          <li className="nav-item"><a href="#destaques" className="nav-link px-2 text-body-secondary">Destaques</a></li>
+          <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Vender/Comprar</a></li>
+          <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Contactos</a></li>
+        </ul>
+        <p className="text-center text-body-secondary">© 2023 Company, Inc</p>
+      </footer>
+    </>
+);
 }
 
 export default App;
