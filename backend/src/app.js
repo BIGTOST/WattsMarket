@@ -28,19 +28,19 @@ app.use('/test', (req, res)=>{
     res.send("General Kenoby");
 });
 
-app.use('billing',middleware.checkToken, billingRoute);
-app.use('contractStatusRoute',middleware.checkToken, contractStatusRoute);
-app.use('contractType',middleware.checkToken, contractTypeRoute);
-app.use('contract',middleware.checkToken, contractRoute);
-app.use('document',middleware.checkToken, documentRoute);
-app.use('infrastructure',middleware.checkToken, infrastructureRoute);
-app.use('infrastructureType',middleware.checkToken, infrastructureTypeRoute);
-app.use('pack',middleware.checkToken, packRoute);
-app.use('packValueHistor',middleware.checkToken, packValueHistoryRoute);
-app.use('paymentMethod',middleware.checkToken, paymentMethodRoute);
-app.use('production',middleware.checkToken, productionRoute);
-app.use('uprofile',middleware.checkToken, profileRoute);
-app.use('userProfile',middleware.checkToken, userProfileRoute);
+app.use('/billing',middleware.checkToken, billingRoute);
+app.use('/contractStatusRoute',middleware.checkToken, contractStatusRoute);
+app.use('/contractType',middleware.checkToken, contractTypeRoute);
+app.use('/contract',middleware.checkToken, contractRoute);
+app.use('/document',middleware.checkToken, documentRoute);
+app.use('/infrastructure',middleware.checkToken, infrastructureRoute);
+app.use('/infrastructureType',middleware.checkToken, infrastructureTypeRoute);
+app.use('/pack',middleware.checkToken, packRoute);
+app.use('/packValueHistor',middleware.checkToken, packValueHistoryRoute);
+app.use('/paymentMethod',middleware.checkToken, paymentMethodRoute);
+app.use('/production',middleware.checkToken, productionRoute);
+app.use('/uprofile',middleware.checkToken, profileRoute);
+app.use('/userProfile',middleware.checkToken, userProfileRoute);
 app.use('/user', userRoute);
 app.use('/var',middleware.checkToken, varRoute);
 
