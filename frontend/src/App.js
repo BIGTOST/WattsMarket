@@ -1,12 +1,13 @@
-import './App.css';
+import './css/App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
 // import views
-import Index from './views/page.index.view';
-import BackOffice from './views/page.backoffice.view';
-import FrontOffice from './views/page.frontoffice.view';
+import Index from './views/mainPages/page.index.view';
+import BackOffice from './views/mainPages/page.backoffice.view';
+import FrontOffice from './views/mainPages/page.frontoffice.view';
+import LoginPage from './views/components/login.components.view'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/' element={<Index/>}/>
             <Route path='/admin' element={<BackOffice/>}/>
             <Route path='/cliente' element={<FrontOffice/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
           </Routes>
         </div>
       </Router>
