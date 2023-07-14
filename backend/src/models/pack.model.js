@@ -10,9 +10,9 @@ const Packs = BD.define('Packs',{
         autoIncrement:true
     },
     V:Sequelize.INTEGER,
-    KW:Sequelize.DOUBLE(5),
-    value:Sequelize.DOUBLE(5),
-    valueData:Sequelize.DATE    
+    KW:Sequelize.DOUBLE(),
+    value:Sequelize.DOUBLE(),
+    valueData:Sequelize.DATE
 });
 
 Packs.belongsTo(user,{foreignKey:'vendor'});

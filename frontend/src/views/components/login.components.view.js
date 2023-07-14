@@ -8,17 +8,21 @@ import AuthSevice from '../auth/auth.service.views'
 import CheckButton from 'react-validation/build/button'
 import Form from 'react-validation/build/form';
 import {Link} from 'react-router-dom';
-import input from 'react-validation/build/input';
+import Input from 'react-validation/build/input';
+//import {Validation} from 'react-validation'
 import {useNavigate} from 'react-router-dom';
-import useParams from 'react-router-dom';
 
-const require = (value)=>{
+
+const required = (value)=>{
     if(!value){
-        return(
+        return[
             <div className='alert alert-danger' role='alert'>
-                    Este Campo é obrigatorio
+                    Este Campo é obrigatorio!
             </div>
-        );
+        ];
+    }
+    else{
+        return [];
     }
 };
 
@@ -31,10 +35,9 @@ export default function LoginComponent(){
     const navigate = useNavigate();
 
     async function HandleLogin(event){
-        event.preventDefault();
         setMessage('');
         setLoading(true);
-        
+
         AuthSevice.login(username, password)
         .then((res)=>{
             if(res === '' || res === false){
@@ -50,8 +53,6 @@ export default function LoginComponent(){
             setLoading(false);
         });
     }
-
-
     return(
         <>
             <section className='h-100 gradient-form'>
@@ -75,7 +76,7 @@ export default function LoginComponent(){
                                                 <p>Junte-se a Revolução Energética</p>
                                             </div>
 
-                                            <form className='mt-5' onSubmit={HandleLogin}>
+                                            <Form className='mt-5' onSubmit={HandleLogin}>
                                                 <div className='form-outline mb-4'>
                                                     <label className='form-label branco' htmlFor='formEmailLogin'>Email</label>
                                                     <input
@@ -84,7 +85,7 @@ export default function LoginComponent(){
                                                         className='form-control'
                                                         value={username}
                                                         onChange={(value)=>setUsername(value.target.value)}
-                                                        />
+                                                    />
                                                 </div>
                                                 <div className='form-outline mb-4'>
                                                     <label className='form-label branco' htmlFor='formPassLogin'>Password</label>
@@ -92,19 +93,28 @@ export default function LoginComponent(){
                                                         type='password'
                                                         id='formPassLogin'
                                                         className='form-control'
+                                                        validations={[required]}
                                                     />
                                                 </div>
 
                                                 <div className='text-center pt-1 mb-5 pb-1 ex'>
-                                                    <button className='btn btn-primary btn-block fa-lg mb-3' type='button'>Login</button>
-                                                    <a className='branco' href='#!'>Esqueci-me da password?</a>
+                                                    <CheckButton onClick={()=>HandleLogin(username,password)} className='btn btn-primary btn-block fa-lg mb-3' type='button'>Login</CheckButton>
+                                                    <Link className='branco' to={'/noPass'}>Esqueci-me da password?</Link>
                                                 </div>
 
                                                 <div className='d-flex align-items-center justify-content-center pb-4'>
                                                     <p className='mb-0 me-2'>Ainda não tens conta?</p>
-                                                    <button type='button' className='btn btn-outline-danger'>Cria Agora</button>
+                                                    <Link to={'/registro'} type='button' className='btn btn-outline-danger'>Cria Agora</Link>
                                                 </div>
-                                            </form>
+
+                                                {message && (
+                                                    <div className='form-group'>
+                                                        <div className='alert alert-danger' role='alert'>
+                                                            {message}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Form>
 
                                         </div>
                                     </div>

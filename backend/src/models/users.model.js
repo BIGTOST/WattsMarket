@@ -1,4 +1,4 @@
-//*Invocação do packge sequelize para a criação da BD
+ //*Invocação do packge sequelize para a criação da BD
 const Sequelize = require('sequelize');
 //*invocação da base de dados
 const BD = require('./database.model');
@@ -12,13 +12,13 @@ const Users = BD.define('Users',{
         autoIncrement: true,
     },
     V: Sequelize.INTEGER,
-    email: Sequelize.STRING(45),
-    password: Sequelize.STRING(45),
-    name: Sequelize.STRING(45),
-    NIF:Sequelize.STRING(45),
+    email: Sequelize.STRING(),
+    password: Sequelize.STRING(),
+    name: Sequelize.STRING(),
+    NIF:Sequelize.STRING(),
     birthday: Sequelize.DATE,
-    address: Sequelize.STRING(45),
-    IBAN: Sequelize.STRING(45),
+    address: Sequelize.STRING(),
+    IBAN: Sequelize.STRING(),
     phone: Sequelize.INTEGER,
 });
 

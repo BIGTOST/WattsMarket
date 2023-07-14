@@ -8,7 +8,7 @@ const InfrastructureType = BD.define('InfrastructureType',{
         autoIncrement:true
     },
     V:Sequelize.INTEGER,
-    type:Sequelize.STRING(45)
+    type:Sequelize.STRING()
 });
 
 module.exports = InfrastructureType

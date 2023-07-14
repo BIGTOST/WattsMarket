@@ -9,8 +9,8 @@ const Vars = BD.define('Vars', {
         autoIncrement:true
     },
     V:Sequelize.INTEGER,
-    inflationMax:Sequelize.DOUBLE(5),
-    productionCap:Sequelize.DOUBLE(5)
+    inflationMax:Sequelize.DOUBLE(),
+    productionCap:Sequelize.DOUBLE()
 
 });
 

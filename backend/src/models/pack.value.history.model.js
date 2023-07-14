@@ -10,7 +10,7 @@ const PackValueHistorys = BD.define('PackValueHistory',{
         autoIncrement: true
     },
     V:Sequelize.INTEGER,
-    value:Sequelize.DOUBLE(5),
+    value:Sequelize.DOUBLE(),
     startData:Sequelize.DATE,
     endData:Sequelize.DATE,
 });

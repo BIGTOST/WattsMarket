@@ -11,8 +11,8 @@ const billing = BD.define('Billings',{
         autoIncrement:true
     },
     V: Sequelize.INTEGER,
-    billingMonth:Sequelize.STRING(45),
-    value:Sequelize.DOUBLE(45),
+    billingMonth:Sequelize.STRING(),
+    value:Sequelize.DOUBLE(),
     dueDate:Sequelize.DATE,
     payment:Sequelize.DATE
 });

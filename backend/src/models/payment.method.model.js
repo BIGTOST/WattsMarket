@@ -8,7 +8,7 @@ const PaymentMethod = BD.define('PaymentMethod', {
         autoIncrement: true
     },
     V:Sequelize.INTEGER,
-    content:Sequelize.STRING(45)
+    content:Sequelize.STRING()
 });
 
 module.exports = PaymentMethod;

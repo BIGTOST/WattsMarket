@@ -1,0 +1,43 @@
+/* Ocultar a imagem na grade "md" */
+@media(max-width: 991px) {
+  .tst {
+    display: none;
+  }
+  
+}
+
+.imagem{
+  width: 100%;
+}
+
+.backG{
+  background: #13293d;
+}
+
+  .colorL{
+    color: #007dff;
+  }
+
+p{
+  color: white;
+}
+
+.branco{
+  color:white;
+}
+
+.ex{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.margT{
+  margin-top: 5%;
+}
+
+.margR{
+  margin-top: 45%;
+}

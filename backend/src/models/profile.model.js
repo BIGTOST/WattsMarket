@@ -10,7 +10,7 @@ const Profiles = BD.define('Profiles', {
         autoIncremente: true
     },
     V: Sequelize.INTEGER,
-    profile:Sequelize.STRING(45)
+    profile:Sequelize.STRING()
 })
 
 module.exports = Profiles;

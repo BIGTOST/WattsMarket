@@ -13,7 +13,7 @@ const Infrastructure = BD.define('Infrastructure',{
     },
     V: Sequelize.INTEGER,
     capacity: Sequelize.INTEGER,
-    zone: Sequelize.STRING(45),
+    zone: Sequelize.STRING(),
 });
 
 Infrastructure.belongsTo(type, {foreignKey:'type'});
