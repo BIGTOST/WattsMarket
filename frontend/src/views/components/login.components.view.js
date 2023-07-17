@@ -3,14 +3,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../css/login.css'
 
 import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 import AuthSevice from '../auth/auth.service.views'
 import CheckButton from 'react-validation/build/button'
 import Form from 'react-validation/build/form';
-import {Link} from 'react-router-dom';
 import Input from 'react-validation/build/input';
-//import {Validation} from 'react-validation'
-import {useNavigate} from 'react-router-dom';
+import {Validation} from 'react-validation'
+import {useNavigate, Link} from 'react-router-dom';
 
 
 const required = (value)=>{
@@ -25,30 +25,67 @@ const required = (value)=>{
         return [];
     }
 };
+const url = 'http://localhost:3000/';
 
 
 export default function LoginComponent(){
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [userId, setUserId] = useState('')
+    const [dataUserProfile, setDataUserProfile] = useState([]);
     const navigate = useNavigate();
+   
+
+    useEffect(()=>{
+        if(userId !== ''){
+            axios.get(url +'userprofile/user/'+userId)
+            .then(res=>{
+                const data = res.data.data;
+                const ids = data.map(item => item.idProfile)
+                console.log(ids.length)
+                setDataUserProfile(ids);
+                console.log(dataUserProfile);
+            })
+        }
+    },[userId])
+    
 
     async function HandleLogin(event){
         setMessage('');
         setLoading(true);
-
-        AuthSevice.login(username, password)
+        AuthSevice.login(email, password)
         .then((res)=>{
             if(res === '' || res === false){
                 setMessage('Autenticação falhou');
                 setLoading(false);
+                console.log(email +  '1 ' + password);
             }
             else{
-                navigate('/')
+               if(dataUserProfile.length<2){
+                switch (dataUserProfile){
+                    case 1:
+                        navigate('/cliente');
+                        break;
+                    case 2:
+                        navigate('/admin');
+                        break;
+                    default:
+                        navigate('/');
+                        break;
+                }
+               }else{
+                console.log('on work')
+            }
+
+               
+                //navigate('/')
             }
         })
         .catch((error)=>{
+            console.log(error)
+            console.log(email +  '2 ' + password);
             setMessage('Autenticação Falhou');
             setLoading(false);
         });
@@ -68,7 +105,7 @@ export default function LoginComponent(){
                                         <div className='card-body p-md-5 mx-md-4 margT'>
 
                                             <div className='text-center pt-1 mb-5 pb-1 ex'>
-                                                <button className='btn btn-outline-primary btn-block fa-lg mb-3' type='button'>Voltar</button>
+                                                <Link to={'/'} className='btn btn-outline-primary btn-block fa-lg mb-3' type='button'>Voltar</Link>
                                             </div>
 
                                             <div className='text-center'>
@@ -83,8 +120,10 @@ export default function LoginComponent(){
                                                         type='email'
                                                         id='formEmailLogin'
                                                         className='form-control'
-                                                        value={username}
-                                                        onChange={(value)=>setUsername(value.target.value)}
+                                                        value={email}
+                                                        onChange={(value)=>{
+                                                            setEmail(value.target.value)
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className='form-outline mb-4'>
@@ -94,11 +133,18 @@ export default function LoginComponent(){
                                                         id='formPassLogin'
                                                         className='form-control'
                                                         validations={[required]}
+                                                        value ={password}
+                                                        onChange={(value) => setPassword(value.target.value)}
                                                     />
                                                 </div>
 
                                                 <div className='text-center pt-1 mb-5 pb-1 ex'>
-                                                    <CheckButton onClick={()=>HandleLogin(username,password)} className='btn btn-primary btn-block fa-lg mb-3' type='button'>Login</CheckButton>
+                                                    <CheckButton  className='btn btn-primary btn-block fa-lg mb-3' type='button' 
+                                                    onClick={()=>{
+                                                        HandleLogin(email,password);
+                                                        encontraEmail(email);
+                                                        }
+                                                    }>Login</CheckButton>
                                                     <Link className='branco' to={'/noPass'}>Esqueci-me da password?</Link>
                                                 </div>
 
@@ -127,4 +173,23 @@ export default function LoginComponent(){
             </section>
         </>
     )
+    function encontraEmail(email){
+        
+        axios.get(url+'user/email/'+email)
+        .then(res =>{
+            console.log(res.data.data)
+            if(res.data.success){
+                const data = res.data.data[0];
+                console.log(data)
+                setUserId(data.idUser)
+                console.log(userId)
+            }
+            else{
+                alert('Error no Web Service');
+            }
+        })
+        .catch(error =>{
+            alert(error)
+        })
+    }
 }

@@ -10,9 +10,8 @@ import FrontOffice from './views/mainPages/page.frontoffice.view';
 import Index from './views/mainPages/page.index.view';
 import LoginPage from './views/components/login.components.view';
 import RegistraUser from './views/components/registro.components.view';
-import React from 'react';
-
-
+import React,{useState,useEffect } from 'react';
+import AuthService from './views/auth/auth.service.views';
 
 
 
@@ -20,22 +19,20 @@ import React from 'react';
 
 
 function App() {
+
+  const [currenUser, setCurrentUser] = useState("")
+
+  useEffect(()=>{
+    const user = AuthService.getCurrentUser();
+    if(user){
+      setCurrentUser({currenUser: user})
+    }
+  }, []);
+  // logOut(){
+  //   AuthService.logout();
+  // }
   return (
     <>
-      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <a href="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-          HOME
-        </a>
-        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" className="nav-link px-2 link-secondary">Destaques</a></li>
-          <li><a href="#" className="nav-link px-2 link-dark">Vender/Comprar</a></li>
-          <li><a href="#" className="nav-link px-2 link-dark">Contactos</a></li>
-        </ul>
-        <div className="col-md-3 text-end">
-          <button type="button" className="btn btn-outline-primary me-2">Entrar</button>
-          <button type="button" className="btn btn-primary">Registar</button>
-        </div>
-      </header>
       <Router>
         <div className="App">
           <Routes>
@@ -57,7 +54,7 @@ function App() {
         <p className="text-center text-body-secondary">© 2023 Company, Inc</p>
       </footer>
     </>
-);
+  );
 }
 
 export default App;

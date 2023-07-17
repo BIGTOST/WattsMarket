@@ -1,17 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import '../../css/estiloCard.css'
+import '../../../css/estiloCard.css'
 import axios from 'axios';
-import authHeader from '../auth/auth-header.views';
-import {Link, BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import authHeader from '../../auth/auth-header.views';
+import {Link, BrowserRouter as Router, Route} from 'react-router-dom';
 import useParams from 'react-router-dom';
 import React, {useEffect,useState} from 'react';
-import CompradorPage from './frontOfficePages/comprador.frontOffice.views';
-import VendedorPage from './frontOfficePages/vendedor.frontOffice.views';
-
 
 // exports
-export default function PageFrontOffice(){
+export default function CompradorPage(){
 
   const [dataPack, setDataPack] = useState([]);
 
@@ -62,12 +59,14 @@ export default function PageFrontOffice(){
             </div>
           </nav>
       </header>
-       <Routes>
-       <Route path='/comprador' element={<VendedorPage/>}/>
-        <Route path='/vendedor' element={<CompradorPage/>}/>
-       </Routes>
+      
       <main>
+        <div classNameName='row mb-12' style={{backgrouncolor: 'Red'}}>
+          asdasdhkaujhdfkladsbgljkadb jkahdbgaljkdhbfasdfbasjkdhfbaslhfbaslhfbasdlfjhabsdlfjhabs
+        </div>
+        <div classNameName='row mb-12'>
           <LoadFillData/>
+        </div>
       </main>
     </>
   );

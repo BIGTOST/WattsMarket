@@ -54,6 +54,24 @@ controller.findUserProfile = async (req, res) =>{
         data:data
     })
 }
+controller.findUserId = async (req, res) =>{
+    const {idUser} = req.params;
+    console.log(idUser);
+
+    const data = await userProfile.findAll({
+        where:{idUser:idUser},
+    })
+    .then(function(data){
+        return data;
+    })
+    .catch(error =>{
+        return error;
+    })
+    res.json({
+        success:true,
+        data:data
+    })
+}
 
 controller.updateUserProfile = async (req,res) =>{
     const {idUserProfile} = req.params;

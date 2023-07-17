@@ -8,7 +8,8 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
-import { Alert } from 'bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function RegistraUser(){
     const [email, setEmail] = useState('');
@@ -288,7 +289,7 @@ export default function RegistraUser(){
                         </div>
                     </form>
                 );
-            case 3:
+            case 3:     
                 return(
                     <form className='mt-5'>
                             <div className='form-outline mb-4'>
@@ -331,11 +332,11 @@ export default function RegistraUser(){
                             />
                         </div>
                         <div className='text-center pt-1 mb-4 pb-1 ex'>
-                            <button class="btn btn-success btn-block fa-lg mb-3" type="button" onClick={() =>nextPage()}>Finalizar</button>
+                            <button  class="btn btn-success btn-block fa-lg mb-3" type="button" onClick={() =>nextPage()}>Finalizar</button>
                         </div>
                         <div className='d-flex align-items-center justify-content-center pb-4'>
                             <p className='mb-0 me-2'>Já tens conta?</p>
-                            <Link to={'/login'} type='button' className='btn btn-outline-danger'>Login</Link>
+                            <Link to={'/LOGIN'} type='button' className='btn btn-outline-danger'>Login</Link>
                         </div>
                     </form>
                 );
@@ -389,7 +390,7 @@ export default function RegistraUser(){
 
 
                                             <div className='text-center pt-1 mb-5 pb-1 ex'>
-                                                <button className='btn btn-outline-primary btn-block fa-lg mb-3' type='button'>Voltar</button>
+                                                <Link to={'/'} className='btn btn-outline-primary btn-block fa-lg mb-3' type='button'>Voltar</Link>
                                             </div>
 
 

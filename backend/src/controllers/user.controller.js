@@ -17,6 +17,9 @@ const Billings = require('../models/billing.model');
 const UserProfiles = require('../models/user.profile.model');
 const Users = require('../models/users.model');
 
+const jwt = require('jsonwebtoken');
+const bcrypt =require('bcrypt');
+const config = require('../config');
 const controller = {};
 
 BD.sync();
@@ -87,11 +90,11 @@ controller.createUser = async (req, res)=>{
         });
     }catch(error){
         console.log('Erro: ' + error);
-        res.status(500).json({
-            success:false,
-            message:'Failed to create user and userProfile',
-            error:error
-        });
+        // res.status(500).json({
+        //     success:false,
+        //     message:'Failed to create user and userProfile',
+        //     error:error
+        // });
     };
 }
 
@@ -178,17 +181,41 @@ controller.deleteUser = async (req,res) =>{
         success:true,
         message: 'deletado'
     })
-    console.log('passamos no update');  
+    console.log('passamos no update');
+}
+controller.findEmail = async (req, res)=>{
+    const {email}  = req.params
+    console.log(email);
+
+    const data = await users.findAll(
+        {
+            where: {email: email}
+        }
+    )
+    .then(function(data){
+        return data;
+    })
+    .catch(error=>{
+        console.log('Error: ' + error);
+        return error;
+    })
+    res.json({
+        success: true,
+        data: data
+    })
 }
 
 controller.login = async (req,res) =>{
-    const  email ='';
-    const  password = '';
+    let email =  req.body.email;
+    let password = req.body.password
+
     if(req.body.email && req.body.password){
-        email = req.body.password;
-        password = req.body.passaword;
+        email = req.body.email;
+        password = req.body.password;
     }
-    var user = await Users.findOne({where:{email:email}})
+    var user = await Users.findOne(
+        {where:{email:email}}
+    )
     .then(function(data){
         return data;
     })
@@ -196,20 +223,20 @@ controller.login = async (req,res) =>{
         console.log('Erro: '+error);
         return error;
     })
-    if (password === null || typeof passaword === 'undefined'){
+    if (password === null || typeof password === 'undefined'){
         res.status(403).json({
             success: false,
             message:'Campos em Branco'
         });
     }
     else{
-        if(req.body.email && req.body.passaword && user){
-            const inMatch = bcrypt.compareSync(password, user.passaword);
+        if(req.body.email && req.body.password && user){
+            const inMatch = bcrypt.compareSync(password, user.password);
             if(req.body.email === user.email && inMatch){
                 let token = jwt.sign({
                     email:req.body.email
-                }, 
-                    config.secret
+                },
+                    config.jwtSecret
                 ,{
                     expiresIn: '4h'
                 });
